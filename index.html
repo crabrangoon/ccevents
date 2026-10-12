@@ -680,15 +680,15 @@
         eventList.append(fragment);
 
       } catch (error) {
-        console.error("Community Compass events error:", error);
+  console.error("Community Compass events error:", error);
 
-        eventList.replaceChildren(
-          makeElement(
-            "p",
-            "events-message",
-            "We're having trouble loading events. Please try again later."
-          )
-        );
+  eventList.replaceChildren(
+    makeElement(
+      "p",
+      "events-message",
+      "Error: " + error.message
+    )
+  );
 
       } finally {
         eventList.setAttribute("aria-busy", "false");
