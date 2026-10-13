@@ -502,15 +502,28 @@
         location
       ].filter(Boolean).join(" · ");
 
-      content.append(
-        makeElement("h3", "", (event.title || "").trim()),
-        makeElement("p", "event-meta", metaText),
-        makeElement(
-          "p",
-          "event-description",
-          (event.description || "").trim()
+     content.append(
+       makeElement("h3", "", (event.title || "").trim()),
+       makeElement("p", "event-meta", metaText),
+       makeElement(
+        "p",
+        "event-description",
+        (event.description || "").trim()
         )
       );
+
+// Display the event organiser, if provided
+const organizer = (event.organizer || "").trim();
+
+if (organizer) {
+  const organizerElement = makeElement(
+    "p",
+    "event-meta",
+    `Organised by: ${organizer}`
+  );
+
+  content.append(organizerElement);
+}
 
       /*
         Only allow HTTP and HTTPS links.
