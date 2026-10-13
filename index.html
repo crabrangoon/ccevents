@@ -477,8 +477,18 @@
 
       const content = document.createElement("div");
 
-      const startTime = (event.startTime || "").trim();
-      const endTime = (event.endTime || "").trim();
+     function formatTime(value) {
+        return (value || "")
+          .trim()
+          .replace(
+            /^(\d{1,2}:\d{2}):\d{2}(\s*[AP]M)?$/i,
+            "$1$2"
+          );
+      }
+
+      const startTime = formatTime(event.startTime);
+      const endTime = formatTime(event.endTime);
+      
       const location = (event.location || "").trim();
 
       let timeRange = "";
