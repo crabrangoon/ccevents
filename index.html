@@ -516,15 +516,26 @@
 
 // Display the event organiser, if provided
 const organizer = (event.organizer || "").trim();
+const contactEmail = (event.contactEmail || "").trim();
 
 if (organizer) {
-  const organizerElement = makeElement(
-    "p",
-    "event-meta",
-    `Organised by: ${organizer}`
+  content.append(
+    makeElement(
+      "p",
+      "event-meta",
+      `Organised by: ${organizer}`
+    )
   );
+}
 
-  content.append(organizerElement);
+if (contactEmail) {
+  const emailParagraph = makeElement("p", "event-meta");
+  const emailLink = makeElement("a", "", contactEmail);
+
+  emailLink.href = `mailto:${contactEmail}`;
+
+  emailParagraph.append("Contact: ", emailLink);
+  content.append(emailParagraph);
 }
 
       /*
